@@ -1,6 +1,6 @@
 package com.example.musicapp.ui.screens
 
-import android.util.Log
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,28 +21,30 @@ import com.example.musicapp.viewmodels.ChartViewModel
 @Composable
 fun ChartScreen(
     paddingValues: PaddingValues,
+    onTrackClick: (Long) -> Unit
 ) {
     val component = getApplicationComponent()
     val viewModel: ChartViewModel = viewModel(factory = component.getViewModelFactory())
     val screenState = viewModel.getScreenState().collectAsStateWithLifecycle()
     ScreenState(
-        screenState,
-        paddingValues
+        screenState = screenState,
+        paddingValues = paddingValues,
+        onTrackClick = onTrackClick
     )
-    Log.d("ChartScreen", screenState.value.toString())
-
 }
 
 @Composable
 private fun ScreenState(
     screenState: State<ChartScreenState>,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onTrackClick: (Long) -> Unit
 ) {
     when (val currentScreenState = screenState.value) {
         is ChartScreenState.MainContent -> {
             MainContent(
-                currentScreenState.tracksEntity,
-                paddingValues
+                tracksEntity = currentScreenState.tracksEntity,
+                paddingValues = paddingValues,
+                onTrackClick = onTrackClick
             )
         }
 
@@ -58,7 +60,8 @@ private fun ScreenState(
 @Composable
 private fun MainContent(
     tracksEntity: TracksEntity,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onTrackClick: (Long) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -66,8 +69,8 @@ private fun MainContent(
         contentPadding = paddingValues
     ) {
         items(tracksEntity.trackList, key = { it.id }) {
-            TrackCard(it) {
-
+            TrackCard(it) { id ->
+                onTrackClick(id)
             }
 
         }

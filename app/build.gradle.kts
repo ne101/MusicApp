@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -52,7 +53,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.dagger)
     implementation(libs.coil)
+    implementation(libs.composeNavigation)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.session)
     ksp(libs.dagger.compiler)
+    implementation (libs.assisted.inject.annotations.dagger2)
+    ksp (libs.assisted.inject.processor.dagger2)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

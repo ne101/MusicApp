@@ -17,11 +17,11 @@ import com.example.domain.entities.TrackEntity
 @Composable
 fun TrackCard(
     trackEntity: TrackEntity,
-    onClick: () -> Unit
+    onClick: (Long) -> Unit
 ) {
     Row(
         modifier = Modifier
-            .clickable { onClick() }
+            .clickable { onClick(trackEntity.id) }
             .height(48.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -32,8 +32,8 @@ fun TrackCard(
             modifier = Modifier.size(48.dp)
         )
         Column(verticalArrangement = Arrangement.SpaceAround, modifier = Modifier.fillMaxHeight()) {
-            TextTrackName(trackEntity.title)
-            TextArtistName(trackEntity.artist.name)
+            TextTrackName(trackEntity.title, 16)
+            TextArtistName(trackEntity.artist.name, 12)
         }
 
     }

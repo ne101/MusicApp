@@ -11,7 +11,7 @@ interface TrackRepository {
     suspend fun fetchTrackList()
 
     fun getTrackByID(): Flow<TrackEntity>
-    suspend fun fetchTrackByID(id: Int)
+    suspend fun fetchTrackByID(id: Long)
 
     fun getTrackListByQuery(): Flow<TracksEntity>
     suspend fun fetchTrackListByQuery(query: String)

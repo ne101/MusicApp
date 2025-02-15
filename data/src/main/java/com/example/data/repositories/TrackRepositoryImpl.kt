@@ -25,7 +25,7 @@ class TrackRepositoryImpl @Inject constructor(
 
     override fun getTrackByID() = trackFlow.asSharedFlow()
 
-    override suspend fun fetchTrackByID(id: Int) {
+    override suspend fun fetchTrackByID(id: Long) {
         val response = apiService.getTrackByID(id).toDomain()
         trackFlow.emit(response)
     }

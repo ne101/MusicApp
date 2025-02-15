@@ -11,7 +11,7 @@ interface ApiService {
     suspend fun getTrackList(): TracksResponse
 
     @GET("track/{id}")
-    suspend fun getTrackByID(@Path("id") id: Int): TrackResponse
+    suspend fun getTrackByID(@Path("id") id: Long): TrackResponse
 
     @GET("search?q={query}")
     suspend fun getTrackListByQuery(@Path("query") query: String): TracksResponse

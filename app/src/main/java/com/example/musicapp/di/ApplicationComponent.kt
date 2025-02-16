@@ -14,4 +14,5 @@ import dagger.Component
 )
 interface ApplicationComponent {
     fun getViewModelFactory(): ViewModelFactory
+    fun getTrackScreenComponentFactory(): TrackScreenComponent.Factory
 }

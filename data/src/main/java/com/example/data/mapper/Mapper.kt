@@ -3,6 +3,7 @@ package com.example.data.mapper
 import com.example.data.models.Album
 import com.example.data.models.Artist
 import com.example.data.models.TrackResponse
+import com.example.data.models.Tracks
 import com.example.data.models.TracksResponse
 import com.example.domain.entities.AlbumEntity
 import com.example.domain.entities.ArtistEntity
@@ -27,6 +28,10 @@ object Mapper {
         id = id,
         preview = preview,
         title = title
+    )
+
+    fun Tracks.toDomain(): TracksEntity = TracksEntity(
+        trackList = trackList.map { it.toDomain() }
     )
 
     fun TracksResponse.toDomain(): TracksEntity = TracksEntity(

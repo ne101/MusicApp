@@ -1,7 +1,9 @@
 package com.example.musicapp.viewmodels
 
 import androidx.lifecycle.viewModelScope
+import com.example.domain.usecases.FetchTrackListByQueryUseCase
 import com.example.domain.usecases.FetchTrackListUseCase
+import com.example.domain.usecases.GetTrackListByQueryUseCase
 import com.example.domain.usecases.GetTrackListUseCase
 import com.example.musicapp.screen_states.ChartScreenState
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,7 +18,9 @@ import javax.inject.Inject
 
 class ChartViewModel @Inject constructor(
     private val getTrackListUseCase: GetTrackListUseCase,
-    private val fetchTrackListUseCase: FetchTrackListUseCase
+    private val getTrackListByQueryUseCase: GetTrackListByQueryUseCase,
+    private val fetchTrackListUseCase: FetchTrackListUseCase,
+    private val fetchTrackListByQueryUseCase: FetchTrackListByQueryUseCase,
 ) : BaseViewModel() {
 
     private val _screenState = MutableStateFlow<ChartScreenState>(ChartScreenState.Initial)
@@ -28,7 +32,7 @@ class ChartViewModel @Inject constructor(
         }
     }
     private val trackListFlow = getTrackListUseCase.invoke().stateInViewModelScope(null)
-
+    private val trackListFlowByQuery = getTrackListByQueryUseCase.invoke().stateInViewModelScope(null)
     init {
         fetchInitialData()
     }
@@ -45,6 +49,21 @@ class ChartViewModel @Inject constructor(
             }
         }
     }
+
+    fun fetchTracksByQuery(query: String) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            fetchTrackListByQueryUseCase.invoke(query)
+            trackListFlowByQuery.filterNotNull().map {
+                ChartScreenState.MainContent(it)
+            }.collect { newState ->
+                _screenState.update {
+                    newState
+                }
+            }
+        }
+    }
+
+
 
     fun getScreenState() = screenState
 

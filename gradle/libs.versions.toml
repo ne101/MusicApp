@@ -6,6 +6,7 @@ coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCoroutinesGuava = "1.6.4"
 lifecycleRuntimeKtx = "2.8.7"
 lifecycleViewModel = "2.8.7"
 activityCompose = "1.10.0"
@@ -34,6 +35,7 @@ assisted-inject-processor-dagger2 = { module = "com.squareup.inject:assisted-inj
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+kotlinx-coroutines-guava = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-guava", version.ref = "kotlinxCoroutinesGuava" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-viewmodel = {group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleViewModel"}

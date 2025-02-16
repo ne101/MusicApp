@@ -3,6 +3,7 @@ package com.example.musicapp.ui.common
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
@@ -17,9 +18,9 @@ fun TextArtistName(text: String, size: Int) {
 }
 
 @Composable
-fun TextTrackName(text: String, size: Int) {
+fun TextTrackName(text: String, size: Int, color: Color = MaterialTheme.colorScheme.primary) {
     Text(
-        color = MaterialTheme.colorScheme.primary,
+        color = color,
         text = text,
         fontSize = size.sp,
         maxLines = 1,
